@@ -2,7 +2,7 @@ class Solution:
     def longestPalindrome(self, s: str) -> str:
         size = len(s)
         index = 0
-        buffer = []
+        buffer = ""
         word = None
 
         if (size > 1):
@@ -10,10 +10,11 @@ class Solution:
                 for i in range(index, size):
                     word = s[index:i + 1]
                     if (self.__is_palindrom__(word) == True):
-                        buffer.append(word)
+                        if (len(word) > len(buffer)):
+                            buffer = word
                 index += 1
 
-            return (max(buffer, key=len))
+            return (buffer)
         return (s)
 
     def __is_palindrom__(self, data):
