@@ -1,18 +1,12 @@
 class Solution:
     def destCity(self, paths: list[list[str]]) -> str:
-        s = len(paths)
-        print(paths[s - 1][len(paths[s - 1]) - 1])
-        graph = {}
+        destinations = set()
+        outgoing_cities = set()
 
-        for i in range(len(paths)):
-            for city in paths[i]:
-                if (city not in graph):
-                    graph[city] = paths[i]
-                for item in paths[i]:
-                    if (item not in graph[city]):
-                        graph[city].append(item)
+        for path in paths:
+            destinations.add(path[1])
+            outgoing_cities.add(path[0])
 
-        print(graph)
-        return (graph)
-    
-Solution().destCity([["London","New York"],["New York","Lima"],["Lima","Sao Paulo"]])
+        for destination in destinations:
+            if destination not in outgoing_cities:
+                return destination
